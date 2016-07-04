@@ -1,0 +1,10 @@
+window.onload=function() {
+    var canvas = document.getElementsByTagName("canvas")[0];
+    var cobj = canvas.getContext("2d");
+    var back = document.getElementsByClassName("back")[0];
+    var runs = document.getElementsByClassName("run");
+    var jumps = document.getElementsByClassName("jump");
+    var hinders = document.getElementsByClassName("hinder");
+    var playGame = new game(canvas, cobj, back, runs, jumps, hinders);
+    playGame.run();
+}

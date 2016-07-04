@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		  body,html{
+		  width:100%;height:100%;background:#000;
+		  overflow:hidden;
+		  }
+		  .box{
+		   width:500px;height:500px;margin:20px auto;
+		   overflow:hidden;
+		   border:1px solid red;
+		  }
+		  #canvas{
+		  background:#ccc;
+		  overflow:hidden;
+		  }
+		</style>
+		<title>是男人就下100层</title>
+		<meta charset=""> 
+		<link rel="stylesheet" href="">
+		<script src="scene.js"></script>
+		<script src="tool.js"></script>
+		<script>
+		   window.onload=function  () {
+		    
+//	         var kill=document.getElementById("kill");
+//			 var run=document.getElementById("run");
+//			 var jump=document.getElementById("jump");
+//			 var sink=document.getElementById("sink");
+		     var canvas=document.getElementById("canvas");
+			 var cobj=canvas.getContext("2d");
+			 var replay=true;
+			 //画布宽高
+			 var cobjW=canvas.width;
+			 var cobjH=canvas.height;
+			 //楼层向上速度
+			 var upSpeed=3;
+			 //游戏界面生成
+			 var win=new wel(cobj,cobjW,cobjH);
+			 if(escape(win.title)!==win.untitle){
+				alert(unescape("%u8BF7%u5C0A%u91CD%u7248%u6743%2C%u4E0D%u5F97%u7BE1%u6539"));
+				return;
+			  }
+			 win.draw();
+			 //点击游戏界面开始
+			 canvas.onclick=function  () {
+			   if(!replay){
+			     return;
+			   }
+			   replay=false;
+			 //所有楼层信息
+			  var floorArr=[floors,sink,nail,jump];
+			  var runArr=[];
+			  for (var i=0; i<6; i++) {
+			   var obj=new floorArr[Math.floor(Math.random()*floorArr.length)](cobj);
+                   obj.x=parseInt(Math.random()*(cobjW-obj.width-50)+30);
+				   obj.y=parseInt((i+1)*(80+20*Math.random()));
+				   runArr.push(obj);
+			  }
+			  //主屏
+			var t= setInterval(function(){
+			  cobj.clearRect(0,0,500,500);
+			    //楼层创建运行
+				
+				win.runDraw(p.life,Math.ceil(win.floors));
+				for (var i=0; i<runArr.length; i++) {
+				  if(runArr[i].y<80){ 
+				     win.floors+=0.1
+					 var obj=new floorArr[Math.floor(Math.random()*floorArr.length)](cobj)
+					 var newArr=[];
+					 for (var j=0; j<runArr.length; j++) {
+					   newArr[j]=runArr[j]
+					 }
+					 newArr.sort(function  (a,b) {
+					  return a.y<b.y;
+					 })
+                    obj.x=parseInt(Math.random()*(cobjW-obj.width-50)+30);
+					obj.y=newArr[0].y+80+20*Math.random()
+					runArr.splice(i,1,obj);
+					continue;
+				  }else{
+				     if(runArr[i].isClose==true){
+					 runArr[i].moves(runArr[i].x,runArr[i].y-=upSpeed);
+					 }else{
+                     runArr[i].draw(runArr[i].x,runArr[i].y-=upSpeed);
+					 }
+				  }
+				 }
+				 
+				 //判断是否碰撞
+				 if( hits=hit(runArr,p)){
+				      //重置下跌速度
+				       p.dropSpeed=5
+				       //是否下跌
+				        p.isdrop=false;
+						//document.title=hits.y+"::::"+(p.y-p.height)
+						
+		                if(hits.y<(p.y+p.height-20)){
+						    p.isdrop=true;
+						}else{//只要不是钉子就可以增加生命
+						  if(p.life<4&&hits.name!=="nail"){
+						      if(hits.save){
+							    p.life+=1;
+							    hits.save=false;
+							  }
+							 }
+						if(hits.name=="nail"){
+						   if(hits.kill){
+						     p.life-=1;
+							 hits.kill=false;
+						   }
+						}
+						//如果是塌陷楼层下跌
+						if(hits.name=="sink"){
+							  hits.isClose=true;
+						       p.isdrop=true;
+		                 //如果是弹性楼层上跳
+						}else if(hits.name=="jump"){
+							hits.isClose=true;
+							p.y=hits.y-p.height-p.height;
+							//其他楼层上行
+						}else{
+						 p.y=hits.y-p.height;
+						}	
+						}
+				   }else{
+				    p.isdrop=true;
+				   }
+				   //是否超出上限
+				   if(p.y<80){
+				     p.isdrop=true;
+				   }
+				   //下跌加速度
+				   if(p.isdrop){
+				   p.dropSpeed+=0.1;
+				   p.y+=(p.dropSpeed);
+				   }
+				   //超出下线死亡
+				   if(p.y>cobjH-20){
+				     p.life=0;
+				   }
+				   //死亡后停止运行
+				   if(p.life<=0){
+				    clearInterval(t);
+					kill.currentTime=0.3;
+					kill.play();
+					setTimeout(function  () {
+					  location.reload();
+					},1000)
+				   }
+				   document.title=p.life;
+				 personFun ()
+				 //人物运行
+				 
+			 },60)
+           //人物
+		   var p=new person(cobj);
+		   p.x=runArr[1].x+p.width;
+		   p.y=runArr[1].y-p.height;
+		   function personFun () {
+		     if(p.run){
+			   p.x+=p.speed;
+			      if(p.x<0){
+				    p.x=0;
+				  }else	if(p.x>500-30){
+				  p.x=500-30;
+				  }
+			   }
+			    p.intAngle+=p.angleSpeed;
+				if(p.dir=="r"){
+				p.draw(p.x,p.y,Math.sin(p.intAngle)*p.angle1,Math.sin(p.intAngle)*p.angle2,Math.sin(p.intAngle)*p.angle3,Math.sin(p.intAngle)*p.angle4)
+				}else	if(p.dir=="l"){
+				p.draw2(p.x,p.y,Math.sin(p.intAngle)*p.angle1,Math.sin(p.intAngle)*p.angle2,Math.sin(p.intAngle)*p.angle3,Math.sin(p.intAngle)*p.angle4)
+				}else	if(p.dir==""){
+				p.draw3(p.x,p.y);
+				}
+		   }
+		document.onkeydown=function  (e) {
+			  var ev=e||window.event;
+			  if(ev.keyCode==37){
+				 run.play();
+			     p.run=true;
+				 p.dir="l";
+			     p.speed=-Math.abs(p.speed);
+			  }
+			  if(ev.keyCode==39){
+				run.play();
+			     p.run=true;
+				 p.dir="r";
+			     p.speed=Math.abs(p.speed);
+			  }
+			}
+			document.onkeyup=function  () {
+			  run.pause(); 
+			  p.dir="";
+			  p.run=false;
+			}
+			}
+		   }
+		</script>
+	</head>
+	<body>
+	<div class="box">
+	   <canvas id="canvas" width=500 height=500>
+	   </canvas>
+	 </div>
+	   <audio src="wav/kill.wav" id="kill" hidden>
+	   </audio>
+	   <audio src="wav/run.wav" id="run" hidden>
+	   </audio>
+	   <audio src="wav/jump.wav" id="jump" hidden>
+	   </audio>
+	   <audio src="wav/sink.wav" id="sink" hidden>
+	   </audio>
+	</body>
+</html>

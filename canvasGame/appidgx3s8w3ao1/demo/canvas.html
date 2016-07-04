@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            background: #aaa;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementsByTagName("canvas")[0];
+            var cobj = canvas.getContext("2d");
+            var init = 0;
+            var speed = 5;
+            cobj.lineWidth = 10;
+            var t;
+            function move(){
+                init += speed;
+                if (init > 260) {
+                    cancelAnimationFrame(t);
+                } else {
+                    cobj.clearRect(0, 0, 300, 300);
+                    cobj.beginPath();
+                    cobj.arc(150, 150, 100, 0, init * Math.PI / 180);
+                    cobj.stroke();
+                    cobj.closePath();
+                }
+                t=requestAnimationFrame(move);
+            }
+
+            move();
+
+        }
+    </script>
+</head>
+<body>
+<canvas width="300" height="300"></canvas>
+</body>
+</html>

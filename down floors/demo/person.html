@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	   <style>
+	    canvas{
+		  background:#ccc;
+		}
+	   </style>
+		<title>noTitle</title>
+		<meta charset="">
+		<link rel="stylesheet" href="">
+		<script>
+		   
+		   window.onload=function  () {
+		     var isrun=false;
+			 var dir="";
+		     var canvas=document.getElementById("canvas");
+			 var cobj=canvas.getContext("2d");
+			 var angle=90;
+			 var intx=0;
+			 var speed=5;
+			 var y=0;
+			 setInterval(function(){
+			   if(isrun){
+			     if(dir=="l"){
+				   intx-=speed;
+				 }
+				 if(dir=="r"){
+				   intx+=speed;
+				 }
+			   }
+			     
+			     angle+=10;
+				var angle1=40*Math.sin(angle*Math.PI/180);
+				var angle2=-40*Math.sin(angle*Math.PI/180);
+				var angle3=20*Math.sin(angle*Math.PI/180);
+				var angle4=-20*Math.sin(angle*Math.PI/180);
+			     cobj.clearRect(0,0,500,500);
+                 person(cobj,angle1,angle2,angle3,angle4,intx,y)
+			 },60)
+
+      document.onkeydown=function  (e) {
+	    if(e.keyCode==37){
+		   isrun=true;
+		   dir="l"
+		 }
+		 if(e.keyCode==39){
+		   isrun=true;
+		   dir="r";
+		 }
+      }
+	  document.onkeyup=function  () {
+	    isrun=false;
+	  }
+		   }
+  
+		 function person (cobj,angle1,angle2,angle3,angle4,x,y) {
+			 var y=y?y:0;
+			 cobj.save();
+			 cobj.translate(x,y);
+			 //开始绘制头部
+			 cobj.beginPath();
+             cobj.arc(10,10,10,0,Math.PI*2);
+			 cobj.fill();
+			 //开始绘制body
+			 cobj.save();
+			 cobj.translate(10,20);
+			 cobj.lineWidth=14;
+			 cobj.lineCap="round";
+			 cobj.beginPath();
+			 cobj.moveTo(0,0);
+			 cobj.lineTo(0,20);
+			 cobj.stroke();
+			 cobj.restore();
+			 //开始绘制胳膊
+			    //左
+             cobj.save();
+			 cobj.translate(10,15);
+			 cobj.rotate(angle1*Math.PI/180);
+			 cobj.lineWidth=8;
+			 cobj.lineCap="round";
+			 cobj.beginPath();
+			 cobj.moveTo(0,0);
+			 cobj.lineTo(0,30);
+			 cobj.stroke();
+			 cobj.restore();
+             //右
+             cobj.save();
+			 cobj.translate(10,15);
+			 cobj.rotate(angle2*Math.PI/180);
+			 cobj.lineWidth=8;
+			 cobj.lineCap="round";
+			 cobj.beginPath();
+			 cobj.moveTo(0,0);
+			 cobj.lineTo(0,30);
+			 cobj.stroke();
+			 cobj.restore();
+             //绘画腿
+			 //左
+             cobj.save();
+			 cobj.translate(10,40);
+			 cobj.rotate(angle3*Math.PI/180);
+			 cobj.lineWidth=10;
+			 cobj.lineCap="round";
+			 cobj.beginPath();
+			 cobj.moveTo(0,0);
+			 cobj.lineTo(0,30);
+			 cobj.stroke();
+			 cobj.restore();
+			 //右腿
+             cobj.save();
+			 cobj.translate(10,40);
+			 cobj.rotate(angle4*Math.PI/180);
+			 cobj.lineWidth=10;
+			 cobj.lineCap="round";
+			 cobj.beginPath();
+			 cobj.moveTo(0,0);
+			 cobj.lineTo(0,30);
+			 cobj.stroke();
+			 cobj.restore();
+
+             cobj.restore();
+           }
+		</script>
+	</head>
+	<body>
+	    <canvas width=500 height=500 id="canvas">
+		</canvas>
+	</body>
+</html>

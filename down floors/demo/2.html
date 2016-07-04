@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <style>
+		  canvas{
+		  background:#ccc;
+		  }
+		</style>
+		<title>noTitle</title>
+		<meta charset="">
+		<link rel="stylesheet" href="">
+		<script>
+		   window.onload=function  () {
+		     var a=document.getElementById("one");
+              var cobj=a.getContext("2d");
+               var num=0;
+//			  setInterval(function(){
+//			    cobj.clearRect(0,0,500,500);
+//			    num++;
+//				cobj.fillRect(num,0,100,100);
+//			  },60)
+
+              //cobj.fillRect(0,0,100,100);
+//			  cobj.save();
+//			  cobj.translate(100,0);
+//			  cobj.fillRect(0,0,100,100);
+//			  cobj.restore();
+//			  cobj.moveTo(0,0);
+//			  cobj.lineTo(300,300);
+//			  cobj.stroke();
+             var num=0;
+             setInterval(function(){
+			  cobj.clearRect(0,0,500,500);
+              num+=2;
+			  cobj.save();
+              cobj.translate(num,0)
+			  cobj.beginPath();
+			  cobj.arc(50,50,50,0,2*Math.PI);
+			  cobj.stroke();
+			  cobj.restore();
+			  cobj.fillRect(200,200,200,200)
+             },60)
+              
+
+
+
+
+
+
+
+
+
+
+
+			  
+
+		   }
+		</script>
+	</head>
+	<body>
+	   <canvas width=500 height=500 id="one">
+	   </canvas>
+	</body>
+</html>

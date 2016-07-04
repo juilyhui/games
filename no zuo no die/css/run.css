@@ -1,0 +1,40 @@
+body,ul,li,ol,dd,dt,p{
+margin:0;padding:0;list-style:none;
+}
+html,body{
+ width:100%;height:100%;
+}
+.scene{
+  min-width:400px;height:0px;background:#000;
+}
+.interface{
+ width:320px;height:80%;margin:0 auto;position:relative;
+}
+.logo{
+ width:320px;height:110px;margin:0 auto;
+}
+.option{
+ width:320px;height:50%;margin:0 auto;
+ border-radius:10px;margin-top:20px;perspective:800px;
+}
+.option .box{
+  width:50%;height:35px;background:#aaa;margin:0 auto;
+  border-radius:10px;box-shadow:0 0 10px #fff;cursor:pointer;
+  text-align:center;line-height:35px;letter-spacing:4px;font-weight:bold;
+  font-size:18px;color:#333;transform-style:preserve-3d;
+}
+.box .card{
+  width:100%;height:100%;background:#bbb;border-radius:10px;box-shadow:0 0 10px #fff;margin-top:15px;transform-origin:top;transform:rotateX(-179deg);
+  visibility:hidden;
+}
+.start{
+  width:150px;height:40px;background:#ccc;border-radius:10px;
+  box-shadow:0 0 15px #fff;margin:10px auto;text-align:center;
+  line-height:40px;cursor:pointer;letter-spacing:4px;font-weight:bold;
+  transition:all 0.2s ease; color:#444;
+}
+.start:hover{
+  font-size:20px;color:#000;
+  border-top-right-radius:60px;
+  border-bottom-right-radius:60px;
+}

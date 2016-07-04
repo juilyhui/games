@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>noTitle</title>
+		<style>
+		body,canvas{
+		margin:0;padding:0;
+		overflow:hidden;
+		}
+		canvas{
+		background:url(img/bg.jpg) repeat-x;
+		}
+		</style>
+		<meta charset="">
+		<link rel="stylesheet" href="">
+		<script src="js/bird.js"></script>
+		<script src="js/animate.js"></script>
+		<script src="js/tool.js"></script>
+		<script src="js/jquery.js"></script>
+		<script>
+		 window.onload=function  () {
+		   //浏览器的宽高
+		   var clientW=document.documentElement.clientWidth;
+		   var clientH=document.documentElement.clientHeight;
+		   ////初始化界面
+		   var canvas=document.getElementById("canvas");
+		   var cobj=canvas.getContext("2d");
+		   canvas.width=clientW;
+		   canvas.height=clientH;
+           var intObj=new intInterface (cobj,clientW,clientH);
+
+		   document.onclick=function  (e) {
+		     var ev=e||window.event;
+		     //var audio=document.getElementById("audio");
+             intObj.speedDrop=3;
+		     intObj.birdObj.y-=intObj.speedUp;
+			  if (ev.preventDefault ) 
+                 ev.preventDefault(); //阻止 (W3C) 
+		   }
+		   
+		 
+		 }
+		</script>
+	</head>
+	<body>
+	<canvas id="canvas">
+	</canvas>
+	<img src="img/house.png" hidden id="house">
+	<img src="img/way.jpg" hidden id="way">
+	<img src="img/bird.png" hidden id="bird">
+	<audio src="music/1.mp3" id="audio">
+	</audio>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<style>
+	  #one{
+	  background:#ccc;
+	  }
+	</style>
+		<title>noTitle</title>
+		<meta charset="">
+		<link rel="stylesheet" href="">
+		<script>
+		window.onload=function  () {
+		  var canvas=document.getElementById("one");
+		  var cobj=canvas.getContext("2d");
+//		  cobj.save();
+//		  cobj.translate(200,0);
+//		  cobj.rotate(50*Math.PI/180); 
+//		  cobj.fillRect(0,0,100,100);
+//		  cobj.restore();
+//          cobj.fillRect(200,200,100,100);
+           cobj.translate(100,100);
+           var angle=0;
+//            setInterval(function(){
+//			   angle+=5;
+//			   cobj.clearRect(-100,-100,500,500);
+//			   cobj.save();
+//			   cobj.rotate(angle*Math.PI/180);
+//			   cobj.translate(-50,-50);
+//               cobj.fillRect(0,0,100,100);
+//			   cobj.restore();
+//               cobj.fillRect(200,200,100,100);
+//			},60)
+           
+
+		  
+		}
+		</script>
+	</head>
+	<body>
+	<canvas width=500 height=500 id="one">
+	</canvas>
+	</body>
+</html>

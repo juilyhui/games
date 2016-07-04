@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+   
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>优逸客</title>
+	<style>
+	a{
+
+		font-size: 40px;color:red;
+		float:right;position:absolute;
+	}
+	</style>
+	<script>
+	  //document.write("你好，世界");
+	  window.onload=function(){
+	  	var links=document.getElementsByTagName("a")[0];
+	  	links.onclick=function (){
+	  		setInterval(function (){
+	  		 var lefts=links.offsetLeft+10;
+	  		 links.style.left=lefts+"px";
+	  		},60)
+             
+	  	}
+	  }
+	</script>
+</head>
+<body>
+	<a href="javascript:;">优逸客</a>
+</body>
+</html>

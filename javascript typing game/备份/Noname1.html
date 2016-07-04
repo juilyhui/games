@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>单选按钮CSS样式处理效果</title>
+<style type="text/css">
+ body
+ {
+  font-size:12px;
+  font-family:'宋体';
+ }
+ #sex_male ,
+ #sex_female ,
+ #sex_nomale
+ {
+  display:none
+ }
+ label
+ {
+  display:-moz-inline-block;
+  display:inline-block;
+  cursor:pointer;
+  margin:5px 0;
+  padding-left:20px;
+  line-height:15px;
+  background:url(1.gif) no-repeat left top;
+ }
+ label.checked
+ {
+  background-position:left bottom;
+ }
+</style>
+<script type="text/javascript">
+ window.onload = function() 
+ {
+  labels = document.getElementById('male').getElementsByTagName('label');
+  radios = document.getElementById('male').getElementsByTagName('input');
+  for(i=0,j=labels.length ; i<j ; i++)
+  {
+   labels[i].onclick=function() 
+   {
+    if(this.className == '') {
+     for(k=0,l=labels.length ; k<l ; k++)
+     {
+      labels[k].className='';
+	  radios[k].checked = false;
+     }
+     this.className='checked';
+	 try{
+	 	document.getElementById(this.name).checked = true;
+	 } catch (e) {}
+    }
+   }
+  }
+ }
+ var male_obj = {'male':'男', 'female':'女','nomale':'人妖'};
+ function checkform(obj) {
+ 	for (i = 0; i < obj.sex.length; i++) {
+		if (obj.sex[i].checked) {
+			alert(male_obj[obj.sex[i].value]);
+			break;
+		}
+	}
+	return false;
+ }
+</script>
+</head>
+<body>
+<form name="reg" onsubmit="return checkform(this);">
+ <table border="0">
+  <tr>
+    <td><span style="line-height:15px">请选择你的性别：</span></td>
+    <td width="200" id="male">
+		<input type="radio" id="sex_male" checked="checked" name="sex" value="male" /><label name="sex_male" class="checked" for="sex_male">男</label>
+  		<input type="radio" id="sex_female" name="sex" value="female" /><label name="sex_female" for="sex_female">女</label>
+	  <input type="radio" id="sex_nomale" name="sex" value="nomale" /><label name="sex_nomale" for="sex_nomale">人妖</label></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+      <input type="submit" name="Submit" value="提交" id="Submit" /></td>
+  </tr>
+ </table>
+</form>
+</body>
+</html>

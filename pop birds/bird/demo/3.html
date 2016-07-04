@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords"content=""/>
+<meta name="description" content="本篇网页的概述，一段话，对网站的进一步描述"/>
+<meta name="author"  content="网页作者的资料">
+<meta name="robots" content="" />
+<meta http-equiv="Content－Type" content="text/html; charset=gb2312">
+<title>无标题文档</title>
+<style>
+canvas{
+background:#ccc;
+}
+</style>
+<script>
+ window.onload=function  () {
+   var canvas=document.getElementsByTagName("canvas")[0];
+   var cobj=canvas.getContext("2d");
+   var x=15;
+   var y=30;
+   var step=10;
+   var intA=90;
+   var speedA=30;
+   setInterval(function(){
+    cobj.clearRect(0,0,500,500);
+     intA+=speedA;
+     var num=Math.sin(intA*Math.PI/180)*step;
+	 var newx=x+num;
+     var newy=y+num;
+     var colorObj=   cobj.createPattern(document.getElementsByTagName("img")[0],"no-repeat");
+     cobj.fillStyle=colorObj;
+	 cobj.rect(0,0,50,40);
+	 cobj.fill();
+	 cobj.fillStyle="#fff";
+     cobj.beginPath();
+	 cobj.moveTo(20,20);
+	 cobj.lineTo(30,20);
+     cobj.bezierCurveTo(40,30,newx,newy,20,20) 
+     cobj.fill();
+
+   },60)
+    
+   //cobj.scale(0.5,0.5);
+     //cobj.rotate(30*Math.PI/180);
+   //cobj.fillRect(0,0,100,100);
+      //cobj.moveTo(0,100);
+	  //cobj.bezierCurveTo(100,150,200,50,300,100)
+//	  cobj.quadraticCurveTo(100,50,200,100); 
+	  //cobj.stroke();
+   
+ }
+</script>
+</head>
+
+<body>
+<canvas width=500 height=500>
+</canvas>
+<img src="bird.png" hidden>
+</body>
+</html>

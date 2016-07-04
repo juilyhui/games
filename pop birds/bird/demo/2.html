@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <style>
+    canvas{
+    background: #ccc;
+
+    }
+    </style>
+    <script>
+    window.onload=function(){
+    	var canvas=document.getElementsByTagName("canvas")[0];
+    	var cobj=canvas.getContext("2d");
+         var x=120;
+         var y=200;
+	     var intAngle=90;
+		 var angleSpeed=10;
+    	 setInterval(function(){
+		 intAngle+=angleSpeed;
+    	 cobj.clearRect(0,0,500,500);
+            var num=Math.sin(intAngle*Math.PI/180)*100;
+			var newx=x+num;
+			var newy=y+num;
+    	  cobj.save();
+//    	  cobj.translate(newx,newy);
+          cobj.beginPath();
+          //cobj.arc(200,200,newx,0,Math.PI*2);
+		  //cobj.stroke();
+//          cobj.fillRect(0,0,100,100);
+          cobj.restore();
+    
+    	 },50)
+    }
+    </script>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas width=500 height=500>
+	</canvas>
+</body>
+</html>

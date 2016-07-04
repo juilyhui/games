@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <style>
+		 canvas{
+		 background:#ccc;
+		 }
+		</style>
+		<title>noTitle</title>
+		<meta charset="">
+		<link rel="stylesheet" href="">
+		<script>
+		   window.onload=function  () {
+		    var canvas=document.getElementById("canvas");
+			var cobj=canvas.getContext("2d");
+            //cobj.fillRect(0,0,100,100);
+			//cobj.fillStyle="red";
+			//cobj.strokeStyle="red";
+			//cobj.arc(100,100,50,0,Math.PI*2);
+			//cobj.stroke();
+			//cobj.fill();
+			  cobj.lineWidth=10;
+//			  cobj.moveTo(0,0);
+//			  cobj.lineTo(100,100);
+//			  cobj.lineTo(200,0);
+//			  cobj.stroke();
+
+              cobj.beginPath();
+			  cobj.moveTo(0,200);
+			  cobj.lineTo(100,300);
+			  cobj.lineTo(200,200);
+			  cobj.stroke();
+
+              cobj.beginPath();
+			  cobj.arc(100,100,50,0,2*Math.PI);
+			  cobj.stroke();
+
+
+
+
+		   }
+		</script>
+	</head>
+	<body> 
+	    <canvas width=500 height=500 id="canvas">
+		</canvas>
+	</body>
+</html>
